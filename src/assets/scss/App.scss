@@ -1,0 +1,135 @@
+$bg-color: yellow;
+$border-color: red;
+
+body {
+  background: rgb(66, 134, 244);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 500px;
+  height: 2000px;
+  width: 100%;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+
+  overflow: scroll;
+}
+
+#root {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.app {
+  padding: 0;
+  margin: 0;
+  left: 4px;
+  top: 4px;
+  height: calc(100% - 18px - 18px - 8px);
+  width: calc(100% - 18px - 18px - 8px);
+  position: absolute;
+
+  font-family: helvetica, arial, sans-serif;
+
+  border-top-style:dotted;
+  border-bottom-style:dotted;
+  border-left-style:dotted;
+  border-right-style:dotted;
+  border-width:18px;
+  border-color:#9FB2C1;
+}
+
+.textDecoration {
+  font-family: "Comic Sans MS";
+  font-size: 200px;
+  width: 100%;
+  text-align: center;
+  display: block;
+  background: linear-gradient(to right, #d00400 0%, #330867 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.toofusText {
+  @extend .textDecoration;
+  left: 0px;
+  top: -50px;
+  position: absolute;
+}
+
+.toofusText2 {
+  @extend .textDecoration;
+  left: 0px;
+  top: 900px;
+  position: absolute;
+}
+
+.toofus1 {
+  top: 400px;
+  width: 928px;
+  height: 480px;
+  left: calc(50% - 928px/2);
+  position: absolute;
+  z-index: -1;
+}
+
+.toofus2 {
+  top: 1200px;
+  width: 928px;
+  height: 1237px;
+
+  left: calc(50% - 928px/2);
+  position: absolute;
+  z-index: -1;
+}
+
+div {
+  will-change: transform;
+}
+
+$fontSize: 10rem;
+#fancyText {
+  position: absolute;
+  left: 50%;
+  top: 300px;
+  transform-style: preserve-3d;
+  .text {
+    position: absolute;
+    font-size: $fontSize;
+    color: #fff;
+    line-height: $fontSize;
+    font-family: 'Anton', sans-serif;
+    padding: 20px 0;
+    mix-blend-mode: screen;
+    transform-style: preserve-3d;
+    @for $i from 1 through 26 {
+      $key: $i - 1;
+      $param: 5;
+      &:nth-child(#{$i}) {
+        clip-path: polygon(
+                        -30% + ($key * $param) 0,
+                        -20% + ($key * $param) 0,
+                        20% + ($key * $param) 100%,
+                        0% + ($key * $param) 100%
+        );
+        animation: wave 2000ms $key * 200 - 10000ms ease-in-out infinite alternate;
+      }
+    }
+  }
+}
+
+@keyframes wave {
+  0% {
+    transform: translate(-50%, -50%) scale(0.9) rotateX(20deg) rotateY(20deg);
+    color: rgba(0, 30, 100, 1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.1) rotateX(0deg) rotateY(0deg);
+    color: rgba(50, 230, 255, 1);
+  }
+}
